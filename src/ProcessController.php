@@ -203,10 +203,10 @@ class ProcessController {
                 SIGUSR2,
                 SIGCONT,
                 SIGHUP
-            ) as $signal){ echo "\nPARENT INIT";
+            ) as $signal){ 
                 pcntl_signal($signal, array('ProcessController', "signal"));
             }
-        } else { echo "\nCHILD INIT";
+        } else { 
             if(!pcntl_signal(SIGTERM, array('ProcessController', "signal"))){
                 exit();
             }
@@ -265,7 +265,7 @@ class ProcessController {
 
     public static function daemonize(){
         $forkPid = self::fork();
-        if($forkPid === 0){ echo "\n########################################";
+        if($forkPid === 0){
             self::detatch();
             self::runCallBack(self::EVENT_DAEMONIZE);
         }elseif($forkPid > 0) {
@@ -350,7 +350,6 @@ class ProcessController {
      * Stops all running children
      */
     public static function stopChildren($signal=SIGTERM) { 
-        echo "\nSTART KILL CHILDREN - ".self::getPid();
         self::runCallBack(self::EVENT_STOP_CHILDS);
         foreach(self::$children as $pid){
             $res = posix_kill($pid, $signal);
