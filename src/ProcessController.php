@@ -403,7 +403,7 @@ class ProcessController {
         }
     }
 
-    protected function hadPosixError(){
+    protected static function hadPosixError(){
         return posix_get_last_error() > 0;
     }
 
