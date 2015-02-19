@@ -15,15 +15,16 @@ class ProcessController {
 
     const
         WAIT_FOR_CHILD_TIMEOUT = 5000,
-        EVENT_FORK          = 'fork',
-        EVENT_FORK_CHILD    = 'fork_child',
-        EVENT_FORK_PARENT   = 'fork_parent',
-        EVENT_FORK_ERROR    = 'fork_error',
-        EVENT_FORK_ROOT     = 'fork_root',
-        EVENT_DAEMONIZE     = 'daemonize',
-        EVENT_STOP_CHILDS   = 'stop_childs',
-        EVENT_KILL          = 'kill',
-        EVENT_KILLED_CHILD  = 'killed_child';
+        EVENT_FORK           = 'fork',
+        EVENT_FORK_CHILD     = 'fork_child',
+        EVENT_FORK_PARENT    = 'fork_parent',
+        EVENT_FORK_ERROR     = 'fork_error',
+        EVENT_FORK_ROOT      = 'fork_root',
+        EVENT_DAEMONIZE      = 'daemonize',
+        EVENT_STOP_CHILDS    = 'stop_childs',
+        EVENT_STOPPED_CHILDS = 'stopped_childs',
+        EVENT_KILL           = 'kill',
+        EVENT_KILLED_CHILD   = 'killed_child';
 
 
     static protected
@@ -359,6 +360,7 @@ class ProcessController {
                 self::runCallBack(self::EVENT_KILLED_CHILD);
             }
         }
+        self::runCallBack(self::EVENT_STOPPED_CHILDS);
     }
 
 
